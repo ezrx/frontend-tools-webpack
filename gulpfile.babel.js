@@ -21,7 +21,7 @@ import concat from "gulp-concat";
 import imagemin from "gulp-imagemin";
 // import hash from "gulp-hash";
 // import del from "del";
-// import copy from "gulp-copy";
+import copy from "gulp-copy";
 import zip from "gulp-zip";
 
 const browserSync = BrowserSync.create();
@@ -101,13 +101,13 @@ gulp.task("nunjucks", function() {
     .pipe(browserSync.stream());
 });
 
-// // html task
-// gulp.task("html", function() {
-//   return gulp
-//     .src("./site/*.html")
-//     .pipe(gulp.dest("./site"))
-//     .pipe(browserSync.stream());
-// });
+// html task
+gulp.task("html", function() {
+  return gulp
+    .src("./site/*.html")
+    .pipe(gulp.dest("./site"))
+    .pipe(browserSync.stream());
+});
 
 // image optimizing
 gulp.task("images", function() {
@@ -119,6 +119,20 @@ gulp.task("images", function() {
     .pipe(imagemin())
     .pipe(gulp.dest("./site/assets/img"))
     .pipe(browserSync.stream());
+});
+
+// copy font
+gulp.task("fonts", function() {
+  return (
+    gulp
+      .src([
+        "./src/fonts/*.+(otf|eot|ttf|svg|woff|woff2)",
+        "./src/fonts/**/*.+(otf|eot|ttf|svg|woff|woff2)"
+      ])
+      // .pipe(copy())
+      .pipe(gulp.dest("./site/assets/fonts"))
+      .pipe(browserSync.stream())
+  );
 });
 
 // static server & task watch
@@ -138,6 +152,16 @@ gulp.task("default", function() {
     console.log(event);
     gulp.start("images");
   });
+  gulp.watch(
+    [
+      "./src/fonts/*.+(otf|eot|ttf|svg|woff|woff2)",
+      "./src/fonts/**/*.+(otf|eot|ttf|svg|woff|woff2)"
+    ],
+    function(event) {
+      console.log(event);
+      gulp.start("fonts");
+    }
+  );
   gulp.watch(
     [
       "src/templates/pages/**/*.+(html|nunjucks|njk)",

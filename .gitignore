@@ -6,6 +6,8 @@ dist
 
 dist-product
 
+site
+
 yarn.lock
 
 yarn-error.log
