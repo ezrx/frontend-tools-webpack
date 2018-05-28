@@ -176,6 +176,7 @@ gulp.task("default", function() {
     console.log(event);
     gulp.start("html").on("change", browserSync.reload);
   });
+  gulp.start("nunjucks", "fonts", "images", "sass", "javascript");
 });
 
 // staging
