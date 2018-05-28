@@ -101,13 +101,13 @@ gulp.task("nunjucks", function() {
     .pipe(browserSync.stream());
 });
 
-// html task
-gulp.task("html", function() {
-  return gulp
-    .src("./site/*.html")
-    .pipe(gulp.dest("./site"))
-    .pipe(browserSync.stream());
-});
+// // html task
+// gulp.task("html", function() {
+//   return gulp
+//     .src("./site/*.html")
+//     .pipe(gulp.dest("./site"))
+//     .pipe(browserSync.stream());
+// });
 
 // image optimizing
 gulp.task("images", function() {
@@ -155,9 +155,25 @@ gulp.task("default", function() {
 });
 
 // staging
-// gulp.task('dist', function(){
-// 	return gulp.src(['!./src/img/', '!./src/img/**', '!./src/sass/', '!./src/sass/**', '!./src/components/', '!./src/components/**', '!./src/templates/', '!./src/templates/**', '!./src/pages/', '!./src/pages/**', '!./src/js/', '!./src/js/**', '!./src/source/**', './src/**/*'])
-//     .pipe(gulp.dest('./dist/'))
+// gulp.task("dist", function() {
+//   return gulp
+//     .src([
+//       "!./src/img/",
+//       "!./src/img/**",
+//       "!./src/sass/",
+//       "!./src/sass/**",
+//       "!./src/components/",
+//       "!./src/components/**",
+//       "!./src/templates/",
+//       "!./src/templates/**",
+//       "!./src/pages/",
+//       "!./src/pages/**",
+//       "!./src/js/",
+//       "!./src/js/**",
+//       "!./src/source/**",
+//       "./src/**/*"
+//     ])
+//     .pipe(gulp.dest("./dist/"));
 // });
 
 // delivery & compress ( integrated with web & apps )
